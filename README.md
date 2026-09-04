@@ -64,5 +64,26 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-WeaveGrid is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+WeaveGrid builds grid-orchestration software that lets electric utilities absorb rapid EV and
+distributed-energy load growth without overbuilding the distribution system. Its DISCO
+(Distribution-Integrated System Capacity Orchestration) platform ingests vehicle telematics and
+cloud-connected device data, then sends hyper-local, individualized charging and dispatch signals to
+EVs, home batteries, smart thermostats and other flexible loads so they respond to constraints at the
+transformer, feeder and substation level.
+
+- Website: https://www.weavegrid.com/
+- News: https://www.weavegrid.com/news
+- Partners: https://www.weavegrid.com/partners
+- GitHub: https://github.com/weavegrid
+
+## API surface
+
+WeaveGrid publishes **no public developer program** — no portal, reference, specification, SDK, CLI,
+MCP server or agent card. A partner API is marketed to aggregators on the partners page, and the
+production host `api.weavegrid.com` runs a FastAPI application whose auto-generated OpenAPI document
+is present at `/openapi.json` and its Swagger UI at `/docs`. Both answered **HTTP 401 with
+`WWW-Authenticate: Basic`** when probed on 2026-09-04, so a machine-readable contract exists but is not
+published. Access is obtained through the "Become a partner" contact form.
+
+This profile therefore records a **gated** coverage state. Publishing the contract while keeping
+credential issuance behind the partner form would be the single largest improvement available.

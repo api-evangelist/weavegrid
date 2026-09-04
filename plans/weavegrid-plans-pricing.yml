@@ -1,0 +1,24 @@
+generated: '2026-09-04'
+method: searched
+source: https://www.weavegrid.com/
+note: >-
+  WeaveGrid publishes NO pricing or plan information of any kind. It sells enterprise software to
+  regulated electric utilities under negotiated contracts, and its partner programme is entered through
+  a "Become a partner" contact form. /pricing returns 404 on the marketing site and no pricing page
+  appears anywhere in the published sitemap (200,777 bytes, 275 URLs, none pricing-related). This is an
+  honest zero, recorded as data rather than omitted; plan_count 0 scores zero on plans_present, which
+  is the correct outcome.
+plan_count: 0
+plans: []
+model: enterprise-negotiated
+self_serve_signup: false
+free_tier: false
+evidence:
+- url: https://www.weavegrid.com/pricing
+  status: 404
+- url: https://www.weavegrid.com/partners
+  status: 200
+  note: '"Plug into our partner API" / "Become a partner" contact form — no price stated.'
+- url: https://www.weavegrid.com/sitemap.xml
+  status: 200
+  note: No pricing or plans URL present.

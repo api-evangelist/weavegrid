@@ -1,0 +1,22 @@
+generated: '2026-09-04'
+method: searched
+source: https://api.weavegrid.com/openapi.json
+note: >-
+  WeaveGrid documents no rate limits. There is no developer portal, no reference and no public
+  specification in which limits could be stated, and the generated OpenAPI document that would carry
+  response headers is auth-gated (401, WWW-Authenticate: Basic), so no header names could be observed
+  either. NO `RateLimits` POINTER IS WIRED into apis.yml: the agent-readiness rate_limit_signal check
+  awards partial credit for the mere presence of a RateLimits link, and awarding it for a file that
+  records zero published limits would credit WeaveGrid for a signal it does not emit. limit_count 0 is
+  the honest measurement.
+limit_count: 0
+limits: []
+headers: []
+exhaustion_status: null
+evidence:
+- url: https://api.weavegrid.com/openapi.json
+  status: 401
+  note: 'Auth-gated; response headers for rate limiting could not be read anonymously.'
+- url: https://www.weavegrid.com/partners
+  status: 200
+  note: Partner API marketed with no technical reference and no stated limits.

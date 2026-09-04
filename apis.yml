@@ -1,18 +1,59 @@
 aid: weavegrid
 name: WeaveGrid
-description: 'WeaveGrid is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  WeaveGrid builds grid-orchestration software that lets electric utilities absorb rapid EV and
+  distributed-energy load growth without overbuilding the distribution system. Its DISCO
+  (Distribution-Integrated System Capacity Orchestration) platform ingests vehicle telematics and
+  cloud-connected device data, then sends hyper-local, individualized charging and dispatch signals to
+  EVs, home batteries, smart thermostats and other flexible loads so they respond to real constraints at
+  the transformer, feeder and substation level. The company runs managed-charging and time-of-use
+  programs for utilities including Pacific Gas and Electric, Dominion Energy, DTE, Xcel Energy,
+  Baltimore Gas and Electric, Alabama Power, Ameren Illinois and Portland General Electric, and
+  integrates directly with OEM and device partners such as Toyota, Lexus, Rivian, Hyundai, Kia,
+  ChargePoint, Wallbox, Emporia, SolarEdge, FranklinWH and ecobee. WeaveGrid markets a partner API for
+  aggregators, but publishes no public developer portal, reference or machine-readable specification.
+image: https://cdn.prod.website-files.com/62c71c576987c5a343e57279/6303119bf01cad6a5d8540af_wg-meta-image.png
 url: https://raw.githubusercontent.com/api-evangelist/weavegrid/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-09-04'
 modified: '2026-09-04'
 tags:
+- Energy
+- Electric Utilities
+- Electric Vehicles
+- EV Charging
+- Smart Grid
+- Managed Charging
+- Distributed Energy Resources
+- Demand Response
+- Grid Orchestration
+- Vehicle Telematics
+- Climate Tech
 - Company
-apis: []
+apis:
+- aid: weavegrid-partner-api
+  name: WeaveGrid Partner API
+  description: >-
+    WeaveGrid markets a partner API that lets aggregators, OEMs and device manufacturers align their
+    software stack with electric utilities and participate in WeaveGrid-operated grid programs. The
+    production host api.weavegrid.com serves a FastAPI application (server header "uvicorn", first-party
+    "x-wg-log-session" response header) whose generated OpenAPI document is present at /openapi.json and
+    its Swagger UI at /docs, but both answer HTTP 401 with "WWW-Authenticate: Basic". No public
+    reference, portal or specification is published; access is obtained through the "Become a partner"
+    contact form.
+  humanURL: https://www.weavegrid.com/partners
+  baseURL: https://api.weavegrid.com
+  image: https://cdn.prod.website-files.com/62c71c576987c5a343e57279/6303119bf01cad6a5d8540af_wg-meta-image.png
+  tags:
+  - Partner API
+  - Grid Orchestration
+  - Distributed Energy Resources
+  properties:
+  - type: Authentication
+    url: authentication/weavegrid-authentication.yml
+position: Producing
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +61,44 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://www.weavegrid.com/
+- type: Blog
+  url: https://www.weavegrid.com/news
+- type: Support
+  url: https://www.weavegrid.com/contact
+- type: PrivacyPolicy
+  url: https://www.weavegrid.com/privacy-policy
+- type: Login
+  url: https://charge.weavegrid.com/login
+- type: GitHubOrganization
+  url: https://github.com/weavegrid
+- type: DomainSecurity
+  url: security/weavegrid-domain-security.yml
+- type: Plans
+  url: plans/weavegrid-plans-pricing.yml
+- type: LLMsTxt
+  url: llms/weavegrid-llms.txt
+x-enrichment:
+  date: '2026-09-04'
+  status: minimal
+  artifacts_added: 6
+  pass: local-v3
+x-coverage:
+  state: gated
+  reason: sales-gate
+  detail: >-
+    WeaveGrid markets a partner API for aggregators on its partners page but publishes no reference or
+    portal — the only route is the "Become a partner" contact form — and the FastAPI app on
+    api.weavegrid.com keeps its own auto-generated OpenAPI document at /openapi.json and its Swagger UI
+    at /docs behind an HTTP 401 "WWW-Authenticate: Basic" challenge, so the machine-readable contract
+    provably exists and is simply not published.
+  evidence:
+  - url: https://api.weavegrid.com/openapi.json
+    status: 401
+  - url: https://api.weavegrid.com/docs
+    status: 401
+  - url: https://www.weavegrid.com/partners
+    status: 200
+  - url: https://www.weavegrid.com/pricing
+    status: 404
+  checked: '2026-09-04'

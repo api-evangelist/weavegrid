@@ -1,0 +1,91 @@
+generated: '2026-09-04'
+method: probed
+source: >-
+  Direct unauthenticated GET of the named /.well-known/ path list on every host this record knows —
+  the registrable domain and www, the API baseURL host, the driver console host and the app host.
+note: >-
+  NO POINTER IS EMITTED FOR THIS FILE. WeaveGrid serves no /.well-known/ document on any host. Every
+  path 404s on weavegrid.com (301 to www), www.weavegrid.com, api.weavegrid.com and
+  charge.weavegrid.com. The nine 200s recorded on app.weavegrid.com are NOT documents: that host is a
+  Next.js single-page-app catch-all which returns a byte-identical 2,562-byte HTML shell
+  (content-type text/html) for every path, including the control path
+  /.well-known/definitely-not-real-xyz123, which also returned 200 with 2,562 bytes. This file records
+  a verified absence, so no WellKnown, APICatalog or SecurityTxt pointer is wired into apis.yml.
+control_probe:
+  url: https://app.weavegrid.com/.well-known/definitely-not-real-xyz123
+  status: 200
+  bytes: 2562
+  content_type: text/html
+  verdict: >-
+    Catch-all confirmed — a path that cannot exist returns the same 200 and the same byte count as
+    every /.well-known/ path on this host, so no 200 from app.weavegrid.com is evidence of a document.
+hosts:
+- host: weavegrid.com
+  note: 301 redirect to www.weavegrid.com; no document served at the apex.
+  documents:
+  - { path: /.well-known/security.txt, status: 301, file: null }
+  - { path: /.well-known/openid-configuration, status: 301, file: null }
+  - { path: /.well-known/oauth-authorization-server, status: 301, file: null }
+  - { path: /.well-known/oauth-protected-resource, status: 301, file: null }
+  - { path: /.well-known/api-catalog, status: 301, file: null }
+  - { path: /.well-known/ai-plugin.json, status: 301, file: null }
+  - { path: /.well-known/agent-card.json, status: 301, file: null }
+  - { path: /.well-known/agent.json, status: 301, file: null }
+  - { path: /.well-known/aauth-resource.json, status: 301, file: null }
+- host: www.weavegrid.com
+  note: Marketing site (Webflow). Every named path 404s.
+  documents:
+  - { path: /.well-known/security.txt, status: 404, file: null }
+  - { path: /.well-known/openid-configuration, status: 404, file: null }
+  - { path: /.well-known/oauth-authorization-server, status: 404, file: null }
+  - { path: /.well-known/oauth-protected-resource, status: 404, file: null }
+  - { path: /.well-known/api-catalog, status: 404, file: null }
+  - { path: /.well-known/ai-plugin.json, status: 404, file: null }
+  - { path: /.well-known/agent-card.json, status: 404, file: null }
+  - { path: /.well-known/agent.json, status: 404, file: null }
+  - { path: /.well-known/aauth-resource.json, status: 404, file: null }
+- host: api.weavegrid.com
+  note: >-
+    FastAPI/uvicorn production API host. Returns the framework's own JSON {"detail":"Not Found"} for
+    each path, which confirms the request reached the application rather than a CDN error page.
+  documents:
+  - { path: /.well-known/security.txt, status: 404, file: null }
+  - { path: /.well-known/openid-configuration, status: 404, file: null }
+  - { path: /.well-known/oauth-authorization-server, status: 404, file: null }
+  - { path: /.well-known/oauth-protected-resource, status: 404, file: null }
+  - { path: /.well-known/api-catalog, status: 404, file: null }
+  - { path: /.well-known/ai-plugin.json, status: 404, file: null }
+  - { path: /.well-known/agent-card.json, status: 404, file: null }
+  - { path: /.well-known/agent.json, status: 404, file: null }
+  - { path: /.well-known/aauth-resource.json, status: 404, file: null }
+- host: charge.weavegrid.com
+  note: Driver console. Every named path 404s.
+  documents:
+  - { path: /.well-known/security.txt, status: 404, file: null }
+  - { path: /.well-known/openid-configuration, status: 404, file: null }
+  - { path: /.well-known/oauth-authorization-server, status: 404, file: null }
+  - { path: /.well-known/oauth-protected-resource, status: 404, file: null }
+  - { path: /.well-known/api-catalog, status: 404, file: null }
+  - { path: /.well-known/ai-plugin.json, status: 404, file: null }
+  - { path: /.well-known/agent-card.json, status: 404, file: null }
+  - { path: /.well-known/agent.json, status: 404, file: null }
+  - { path: /.well-known/aauth-resource.json, status: 404, file: null }
+- host: app.weavegrid.com
+  note: >-
+    SPA catch-all. Each 200 below is the same 2,562-byte text/html shell, not a document. Treated as a
+    MISS on every path — see control_probe.
+  documents:
+  - { path: /.well-known/security.txt, status: 200, file: null, html_shell: true }
+  - { path: /.well-known/openid-configuration, status: 200, file: null, html_shell: true }
+  - { path: /.well-known/oauth-authorization-server, status: 200, file: null, html_shell: true }
+  - { path: /.well-known/oauth-protected-resource, status: 200, file: null, html_shell: true }
+  - { path: /.well-known/api-catalog, status: 200, file: null, html_shell: true }
+  - { path: /.well-known/ai-plugin.json, status: 200, file: null, html_shell: true }
+  - { path: /.well-known/agent-card.json, status: 200, file: null, html_shell: true }
+  - { path: /.well-known/agent.json, status: 200, file: null, html_shell: true }
+  - { path: /.well-known/aauth-resource.json, status: 200, file: null, html_shell: true }
+summary:
+  hosts_probed: 5
+  paths_probed: 45
+  real_documents_found: 0
+  agent_card_found: false

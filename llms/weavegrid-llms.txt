@@ -1,0 +1,74 @@
+# WeaveGrid
+
+> WeaveGrid builds grid-orchestration software for electric utilities. Its DISCO
+> (Distribution-Integrated System Capacity Orchestration) platform ingests vehicle telematics and
+> cloud-connected device data and sends hyper-local charging and dispatch signals to EVs, home
+> batteries, smart thermostats and other flexible loads, so utilities can absorb EV load growth
+> without overbuilding distribution infrastructure.
+
+Generated: 2026-09-04
+Method: generated
+Source: API Evangelist catalog record for WeaveGrid (all/weavegrid/apis.yml) plus live probes of
+WeaveGrid's public hosts. WeaveGrid does not publish an llms.txt of its own — https://www.weavegrid.com/llms.txt
+returned HTTP 404 on 2026-09-04. This file is an API Evangelist-authored summary hosted in the API
+Evangelist profile repository; it is NOT served by WeaveGrid.
+
+## API surface — read this first
+
+WeaveGrid has **no public developer program**. There is no developer portal, no API reference, no
+published OpenAPI/AsyncAPI/GraphQL specification, no SDK, no CLI, no MCP server and no A2A agent card.
+An agent cannot integrate with WeaveGrid from public material alone.
+
+A partner API does exist and is marketed to aggregators, OEMs and device manufacturers, but it is
+reached only through a commercial conversation:
+
+- Partner API host: https://api.weavegrid.com (FastAPI / uvicorn)
+- Generated OpenAPI document: https://api.weavegrid.com/openapi.json — HTTP 401, `WWW-Authenticate: Basic`
+- Swagger UI: https://api.weavegrid.com/docs — HTTP 401, `WWW-Authenticate: Basic`
+- Access route: "Become a partner" contact form at https://www.weavegrid.com/partners
+
+The specification therefore EXISTS in machine-readable form; it is simply not published. Requesting
+that WeaveGrid publish the contract while keeping credential issuance behind the partner form is the
+single highest-value change available to this profile.
+
+## Company
+
+- Website: https://www.weavegrid.com/
+- Product: DISCO — Distribution-Integrated System Capacity Orchestration
+- Capabilities: EV managed charging, bulk system optimization, distribution orchestration
+- Driver console: https://charge.weavegrid.com/login
+- GitHub organization: https://github.com/weavegrid (10 public repositories, 8 of them forks of
+  third-party tooling; no first-party SDK or specification is published there)
+
+## Utility programs
+
+Pacific Gas and Electric, Dominion Energy, DTE Energy, Xcel Energy, Baltimore Gas and Electric,
+Alabama Power, Ameren Illinois, Portland General Electric, Atlantic City Electric, Delmarva Power,
+Pepco, Efficiency Maine.
+
+## Device and OEM partners
+
+Toyota, Lexus, Rivian, Hyundai, Kia, ChargePoint, Wallbox, Emporia Energy, SolarEdge, FranklinWH,
+ecobee, Trane / American Standard.
+
+## Public pages
+
+- News: https://www.weavegrid.com/news
+- Utilities: https://www.weavegrid.com/utilities
+- Partners: https://www.weavegrid.com/partners
+- Drivers: https://www.weavegrid.com/drivers
+- About: https://www.weavegrid.com/about
+- Contact: https://www.weavegrid.com/contact
+- Careers: https://www.weavegrid.com/careers
+- Privacy Policy: https://www.weavegrid.com/privacy-policy
+- California Privacy Rights Notice: https://www.weavegrid.com/california-privacy-rights-notice
+
+## Not published (verified absent, 2026-09-04)
+
+- Pricing page (/pricing → 404); no plans published
+- Terms of Service (/terms, /terms-of-service, /terms-of-use → 404; the referral agreement at
+  /referral-agreement is scoped to one utility's referral incentive, not a service ToS)
+- Status page (/status → 404) and no status subdomain
+- Trust center or named certifications (SOC 2, ISO 27001 not claimed publicly)
+- security.txt and every other /.well-known/ document, on all five hosts probed
+- Changelog, rate limits, error catalog, sandbox

@@ -1,0 +1,55 @@
+generated: '2026-09-04'
+method: probed
+source: https://api.weavegrid.com/openapi.json
+note: >-
+  This profile is PROBED from the live authentication challenge returned by WeaveGrid's production API
+  host, not read from provider documentation. WeaveGrid publishes no public authentication page, no
+  developer portal and no reference, so no `Authentication` pointer is wired into apis.yml `common[]`:
+  that check credits a provider for DOCUMENTING authentication, and WeaveGrid does not. The pointer is
+  attached to the API entry as a description of what we observed, which is a different claim.
+api: weavegrid-partner-api
+host: api.weavegrid.com
+server_stack:
+  framework: FastAPI
+  server_header: uvicorn
+  evidence: >-
+    /openapi.json and /docs both exist and challenge, while every other path returns the FastAPI
+    default body {"detail":"Not Found"} — the signature of a FastAPI app with its auto-generated
+    OpenAPI document and Swagger UI mounted at the default locations and placed behind a dependency.
+  first_party_evidence: >-
+    Responses carry an "x-wg-log-session" header on WeaveGrid's own registrable domain, and CAA/SPF
+    records for weavegrid.com cover the host, so the surface belongs to WeaveGrid.
+schemes:
+- id: http_basic
+  type: http
+  scheme: basic
+  in: header
+  header: Authorization
+  description: >-
+    The only authentication mechanism observable without credentials. The API host answers protected
+    routes with HTTP 401 and the response header "WWW-Authenticate: Basic", which instructs a client to
+    retry with an Authorization: Basic credential. Whether Basic guards the whole API or only the
+    documentation routes cannot be determined anonymously.
+  observed:
+    url: https://api.weavegrid.com/openapi.json
+    status: 401
+    www_authenticate: Basic
+    body: '{"detail":"Not authenticated"}'
+    content_type: application/json
+    date: '2026-09-04'
+oauth2: false
+openid_connect: false
+api_key: false
+mutual_tls: false
+credential_acquisition:
+  self_serve: false
+  route: >-
+    No public sign-up for API access. WeaveGrid's partners page invites aggregators to "Plug into our
+    partner API" and routes them to a "Become a partner" contact form; credentials are issued through
+    that commercial conversation.
+  url: https://www.weavegrid.com/partners
+  status: 200
+gaps:
+- No public authentication documentation page.
+- No token endpoint, OAuth metadata or OpenID discovery document on any WeaveGrid host.
+- Scope model unknown; no OAuth surface exists, so scopes/ is correctly absent rather than empty.
