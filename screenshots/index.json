@@ -1,0 +1,11 @@
+[
+  {
+    "repo": "weavegrid",
+    "captured_at": "2026-10-11T194619",
+    "source_url": "https://www.weavegrid.com/",
+    "source_type": "Website",
+    "file": "weavegrid-2026-10-11T194619.png",
+    "bytes": 1095331,
+    "capture": "playwright-local"
+  }
+]
